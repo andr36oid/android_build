@@ -259,7 +259,7 @@ endif
 ## user/userdebug ##
 
 user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
-enable_target_debugging := true
+enable_target_debugging := false
 tags_to_install :=
 ifneq (,$(user_variant))
   # Target is secure in user builds.
@@ -272,7 +272,7 @@ ifneq (,$(user_variant))
 
   ifeq ($(user_variant),userdebug)
     # Pick up some extra useful tools
-    tags_to_install += debug
+    # tags_to_install += debug
   else
     # Disable debugging in plain user builds.
     enable_target_debugging :=
