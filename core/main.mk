@@ -259,7 +259,9 @@ endif
 ## user/userdebug ##
 
 user_variant := $(filter user userdebug,$(TARGET_BUILD_VARIANT))
-enable_target_debugging := false
+# andr36oid: debuggable (Rooted debugging, adb root) in every build kind but release,
+# which stays non-debuggable like the 351droid import set it
+enable_target_debugging := $(if $(filter %-release,$(ANDR36OID_VERSION)),false,true)
 tags_to_install :=
 ifneq (,$(user_variant))
   # Target is secure in user builds.
